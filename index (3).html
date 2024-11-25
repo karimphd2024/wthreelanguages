@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multilingual Vocabulary Learning App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        .hidden { display: none; }
+        .word-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            margin-top: 25px; 
+            justify-content: center;
+            padding: 50px;
+        }
+        .word-item {
+            border: 2px solid #007bff;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem; /* Increased font size */
+            border-radius: 8px;
+            background-color: white;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Large Button Styles */
+        .btn {
+            font-size: 1.5rem !important;  /* Increases all button text sizes */
+            padding: 10px 20px;  /* Adds more padding to make buttons larger */
+        }
+        .word-item:hover {
+            background-color: #e6f2ff;
+            transform: scale(1.05);
+        }
+        .matched {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .selected {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .language-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Multilingual Vocabulary Learning App</h1>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="text-center mb-4">
+            <button class="btn btn-primary m-2" onclick="showLanguageSection('english')">English</button>
+            <button class="btn btn-primary m-2" onclick="showLanguageSection('hungarian')">Hungarian</button>
+            <button class="btn btn-primary m-2" onclick="showLanguageSection('french')">Français</button>
+            <button class="btn btn-success m-2" onclick="exportData()">Export Data</button>
+            <button class="btn btn-info m-2" onclick="importData()">Import Data</button>
+        </div>
+
+        <!-- English Section -->
+        <div id="englishSection" class="hidden language-section">
+            <h2 class="text-center">English Vocabulary</h2>
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="showAddWordForm('english')">Add New Word</button>
+                <button class="btn btn-secondary" onclick="startEnglishTest()">English Test</button>
+            </div>
+
+            <div id="englishAddForm" class="hidden text-center mt-3">
+                <input type="text" id="englishWord" class="form-control mb-2" placeholder="English Word">
+                <input type="text" id="englishSynonym" class="form-control mb-2" placeholder="Synonym">
+                <button class="btn btn-success" onclick="saveWord('english')">Save Word</button>
+            </div>
+
+            <div id="englishWordList" class="word-container"></div>
+            <div id="englishTestArea" class="word-container hidden"></div>
+        </div>
+
+        <!-- Hungarian Section -->
+        <div id="hungarianSection" class="hidden language-section">
+            <h2 class="text-center">Hungarian Vocabulary</h2>
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="showAddWordForm('hungarian')">Add New Word</button>
+                <button class="btn btn-secondary" onclick="startHungarianTest()">Hungarian Test</button>
+            </div>
+
+            <div id="hungarianAddForm" class="hidden text-center mt-3">
+                <input type="text" id="hungarianWord" class="form-control mb-2" placeholder="Hungarian Word">
+                <input type="text" id="hungarianSynonym" class="form-control mb-2" placeholder="Synonym">
+                <button class="btn btn-success" onclick="saveWord('hungarian')">Save Word</button>
+            </div>
+
+            <div id="hungarianWordList" class="word-container"></div>
+            <div id="hungarianTestArea" class="word-container hidden"></div>
+        </div>
+
+        <!-- French Section -->
+        <div id="frenchSection" class="hidden language-section">
+            <h2 class="text-center">French Vocabulary</h2>
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="showAddWordForm('french')">Add New Word</button>
+                <button class="btn btn-secondary" onclick="startFrenchTest()">French Test</button>
+            </div>
+
+            <div id="frenchAddForm" class="hidden text-center mt-3">
+                <input type="text" id="frenchWord" class="form-control mb-2" placeholder="French Word">
+                <input type="text" id="frenchArticle" class="form-control mb-2" placeholder="Article">
+                <button class="btn btn-success" onclick="saveWord('french')">Save Word</button>
+            </div>
+
+            <div id="frenchWordList" class="word-container"></div>
+            <div id="frenchTestArea" class="word-container hidden"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
